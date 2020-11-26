@@ -1,12 +1,8 @@
 import React from 'react';
-import logo from "./assets/img/pizza-logo.svg";
+import logo from "../assets/img/pizza-logo.svg";
 import Button from "./Button";
 
 function Header() {
-    const btnClick = () => {
-        alert(123)
-    }
-
     return (
         <div className="header">
             <div className="container">
