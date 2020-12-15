@@ -1,13 +1,15 @@
 import React from 'react'
 import classNames from 'classnames'
 
-function Product({name, imageUrl, price, types}) {
+function Product({ name, imageUrl, price, types, sizes }) {
     const [activeType, setActiveType] = React.useState(types[0])
-    const typeNames = ['тонкое', 'традиционное']
+    const [activeSize, setActiveSize] = React.useState(sizes[0])
 
-    const onSelectType = (index) => {
-        setActiveType(index)
-    }
+    const typeNames = ['тонкое', 'традиционное']
+    const sizeNames = [26, 30, 40]
+
+    const onSelectType = (index) => setActiveType(index)
+    const onSelectSize = (index) => setActiveSize(index)
 
     return (
         <div className="pizza-block">
@@ -33,9 +35,18 @@ function Product({name, imageUrl, price, types}) {
                     }
                 </ul>
                 <ul>
-                    <li className="active">26 см.</li>
-                    <li>30 см.</li>
-                    <li>40 см.</li>
+                    {
+                        sizeNames.map((item, index) => (
+                            <li
+                                key={item}
+                                onClick={() => onSelectSize(index)}
+                                className={classNames({
+                                    'active': activeSize === item,
+                                    'disabled': !sizes.includes(item)
+                                })}
+                            >{item} см.</li>
+                        ))
+                    }
                 </ul>
             </div>
             <div className="pizza-block__bottom">
