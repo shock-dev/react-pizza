@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Pizza } from '../../types/pizza';
 import classNames from 'classnames';
 
-const Card: React.FC<Pizza> = ({ name, imageUrl, types }) => {
+const Card: React.FC<Pizza> = ({ name, imageUrl, types, sizes }) => {
     const typesName = ['тонкое', 'традиционное'];
+    const allSizes = [26, 30, 40];
     const [activeType, setActiveType] = useState(types[0]);
+    const [activeSize, setActiveSize] = useState(sizes[0]);
 
     return (
         <div className="pizza-block">
@@ -30,9 +32,18 @@ const Card: React.FC<Pizza> = ({ name, imageUrl, types }) => {
                     )}
                 </ul>
                 <ul>
-                    <li className="active">26 см.</li>
-                    <li>30 см.</li>
-                    <li>40 см.</li>
+                    {allSizes.map((size, index) =>
+                        <li
+                            key={size + '~' + index}
+                            className={classNames({
+                                'active': activeSize === size,
+                                'disabled': !sizes.includes(size)
+                            })}
+                            onClick={setActiveSize.bind(null, size)}
+                        >
+                            {size} см.
+                        </li>
+                    )}
                 </ul>
             </div>
             <div className="pizza-block__bottom">
@@ -51,7 +62,7 @@ const Card: React.FC<Pizza> = ({ name, imageUrl, types }) => {
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>2</i>
+                    {/*<i>2</i>*/}
                 </div>
             </div>
         </div>
