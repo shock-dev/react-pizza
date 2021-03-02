@@ -8,6 +8,7 @@
     svg {
       margin-right: 8px;
       transform: rotate(180deg);
+      transition: transform .2s;
 
       &.rotated {
         transform: rotate(0);
@@ -22,6 +23,7 @@
       color: $orange;
       border-bottom: 1px dashed $orange;
       cursor: pointer;
+      @include noselect();
     }
   }
 
