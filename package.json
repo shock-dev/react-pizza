@@ -23,10 +23,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "db": "json-server public/db.json --port=5000",
+    "dev": "concurrently \"yarn start\" \"yarn db\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": [
       "react-app",

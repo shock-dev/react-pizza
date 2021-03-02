@@ -2,10 +2,9 @@ import { FC } from 'react';
 import classNames from 'classnames';
 
 type ButtonTypes = {
-    onClick: any,
+    onClick?: any,
     className: string,
-    outline: boolean,
-    children: any
+    outline?: boolean
 }
 
 const Button: FC<ButtonTypes> = ({ onClick, className, outline, children }) => {
