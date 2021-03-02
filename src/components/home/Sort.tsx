@@ -2,7 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 
 const Sort = () => {
-    const sorts = ['популярности', 'цене', 'алфавиту'];
+    const sorts = [
+        { name: 'популярности', type: 'popular', order: 'desc' },
+        { name: 'цене', type: 'price', order: 'desc' },
+        { name: 'алфавит', type: 'name', order: 'asc' },
+    ];
     const [sortActive, setSortActive] = useState(0);
     const [visible, setVisible] = useState(false);
     const wrapperRef = useRef(null);
@@ -45,7 +49,7 @@ const Sort = () => {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={setVisible.bind(null, !visible)}>{sorts[sortActive]}</span>
+                <span onClick={setVisible.bind(null, !visible)}>{sorts[sortActive].name}</span>
             </div>
             <div className="sort__popup" style={{display: visible ? 'block' : 'none'}}>
                 <ul>
@@ -55,7 +59,7 @@ const Sort = () => {
                             className={classNames({'active': sortActive === index})}
                             onClick={sortHandler.bind(null, index)}
                         >
-                            {sort}
+                            {sort.name}
                         </li>
                     )}
                 </ul>
