@@ -10,6 +10,7 @@ const Sort = () => {
     const [sortActive, setSortActive] = useState(0);
     const [visible, setVisible] = useState(false);
     const wrapperRef = useRef(null);
+    const nameOfCurrentSort = sorts[sortActive].name;
 
     const useOutsideAlerter = (ref: any) => {
         useEffect(() => {
@@ -49,13 +50,13 @@ const Sort = () => {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={setVisible.bind(null, !visible)}>{sorts[sortActive].name}</span>
+                <span onClick={setVisible.bind(null, !visible)}>{nameOfCurrentSort}</span>
             </div>
             <div className="sort__popup" style={{display: visible ? 'block' : 'none'}}>
                 <ul>
                     {sorts.map((sort, index) =>
                         <li
-                            key={index}
+                            key={index + sort.name}
                             className={classNames({'active': sortActive === index})}
                             onClick={sortHandler.bind(null, index)}
                         >
