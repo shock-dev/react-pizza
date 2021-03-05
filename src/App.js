@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -12,7 +11,7 @@ import Header from './components/header/Header';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 
-const App: FC = () => {
+const App = () => {
   return (
       <Router>
           <div className="wrapper">

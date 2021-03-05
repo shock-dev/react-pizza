@@ -1,8 +1,7 @@
-import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../layouts/Button';
 
-const Cart: FC = () => {
+const Cart = () => {
     return (
         <div className="header__cart">
             <Link to="/cart">

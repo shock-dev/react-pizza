@@ -1,7 +1,6 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
-const cartComponent: React.FC = () => {
+const cartComponent = () => {
     return (
         <div className="cart">
             <div className="cart__top">

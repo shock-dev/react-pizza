@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import classNames from 'classnames';
 
-const Categories: React.FC = () => {
+const Categories = () => {
     const categories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-    const [categoryActive, setCategoryActive] = useState<null | number>(null);
+    const [categoryActive, setCategoryActive] = useState(null);
 
     return (
         <div className="categories">

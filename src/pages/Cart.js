@@ -2,7 +2,7 @@ import React from 'react';
 import CartComponent from '../components/cart/cartComponent';
 import EmptyCart from '../components/cart/emptyCart'
 
-const Cart: React.FC = () => {
+const Cart = () => {
     const flag = true;
 
     return (

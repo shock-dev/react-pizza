@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 
 const Sort = () => {
@@ -12,9 +12,9 @@ const Sort = () => {
     const wrapperRef = useRef(null);
     const nameOfCurrentSort = sorts[sortActive].name;
 
-    const useOutsideAlerter = (ref: any) => {
+    const useOutsideAlerter = (ref) => {
         useEffect(() => {
-            const handleClickOutside = (event: any) => {
+            const handleClickOutside = (event) => {
                 if (ref.current && !ref.current.contains(event.target)) {
                     setVisible(false);
                 }
@@ -28,7 +28,7 @@ const Sort = () => {
 
     useOutsideAlerter(wrapperRef);
 
-    const sortHandler = (index: number) => {
+    const sortHandler = (index) => {
         setSortActive(index);
         setVisible(false);
     }

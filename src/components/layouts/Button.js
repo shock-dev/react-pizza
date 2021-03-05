@@ -1,13 +1,6 @@
-import { FC } from 'react';
 import classNames from 'classnames';
 
-type ButtonTypes = {
-    onClick?: any,
-    className: string,
-    outline?: boolean
-}
-
-const Button: FC<ButtonTypes> = ({ onClick, className, outline, children }) => {
+const Button = ({ onClick, className, outline, children }) => {
     return (
         <button
             onClick={onClick}

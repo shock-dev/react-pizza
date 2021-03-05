@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { Pizza } from '../../types/pizza';
+import { useState } from 'react';
 import classNames from 'classnames';
 
-const Card: React.FC<Pizza> = ({ name, imageUrl, types, sizes }) => {
+const Card = ({ name, imageUrl, types, sizes }) => {
     const typesName = ['тонкое', 'традиционное'];
     const allSizes = [26, 30, 40];
     const [activeType, setActiveType] = useState(types[0]);
