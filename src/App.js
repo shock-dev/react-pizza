@@ -5,11 +5,11 @@ import {
 } from 'react-router-dom';
 
 // Components
-import Header from './components/header/Header';
+import Header from './components/Header';
 
 // Pages
-import Home from './pages/Home';
-import Cart from './pages/Cart';
+import Home from './pages/Home.jsx';
+import Cart from './pages/Cart.jsx';
 
 const App = () => {
   return (
@@ -18,16 +18,8 @@ const App = () => {
               <Header />
               <div className="content">
                   <Switch>
-                      <Route
-                          path="/"
-                          component={Home}
-                          exact
-                      />
-                      <Route
-                          path="/cart"
-                          component={Cart}
-                          exact
-                      />
+                      <Route path="/" component={Home} exact />
+                      <Route path="/cart" component={Cart} exact />
                   </Switch>
               </div>
           </div>
