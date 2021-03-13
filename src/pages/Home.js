@@ -1,5 +1,5 @@
 import React from 'react';
-import Categories from '../components/home/Categories';
+import Categories from '../components/Categories';
 import Sort from '../components/home/Sort';
 import Card from '../components/home/Card';
 
