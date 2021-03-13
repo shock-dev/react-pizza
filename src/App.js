@@ -8,8 +8,8 @@ import {
 import Header from './components/Header';
 
 // Pages
-import Home from './pages/Home.jsx';
-import Cart from './pages/Cart.jsx';
+import Home from './pages/Home';
+import Cart from './pages/Cart';
 
 const App = () => {
   return (
