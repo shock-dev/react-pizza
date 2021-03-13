@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 
-const Categories = () => {
-    const categories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+const Categories = ({ items }) => {
     const [categoryActive, setCategoryActive] = useState(null);
 
     return (
@@ -14,7 +13,7 @@ const Categories = () => {
                 >
                     Все
                 </li>
-                {categories.map((category, index) =>
+                {items.map((category, index) =>
                     <li
                         key={index}
                         className={classNames({'active': index === categoryActive})}

@@ -2,13 +2,14 @@ import React from 'react';
 import { Categories, Sort, Card } from '../components';
 
 const Home = () => {
+    const categories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
     const pizzas = [];
 
     return (
         <div className="content">
             <div className="container">
                 <div className="content__top">
-                    <Categories />
+                    <Categories items={categories} />
                     <Sort />
                 </div>
                 <h2 className="content__title">Все пиццы</h2>
