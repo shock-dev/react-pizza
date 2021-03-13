@@ -1,16 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 
-const Sort = () => {
-    const sorts = [
-        { name: 'популярности', type: 'popular', order: 'desc' },
-        { name: 'цене', type: 'price', order: 'desc' },
-        { name: 'алфавит', type: 'name', order: 'asc' },
-    ];
+const Sort = ({ items }) => {
+
     const [sortActive, setSortActive] = useState(0);
     const [visible, setVisible] = useState(false);
     const wrapperRef = useRef(null);
-    const nameOfCurrentSort = sorts[sortActive].name;
+    const nameOfCurrentSort = items[sortActive].name;
 
     const useOutsideAlerter = (ref) => {
         useEffect(() => {
@@ -33,6 +29,10 @@ const Sort = () => {
         setVisible(false);
     }
 
+    const toggleVisiblePopup = () => {
+        setVisible(!visible);
+    }
+
     return (
         <div className="sort" ref={wrapperRef}>
             <div className="sort__label">
@@ -50,12 +50,12 @@ const Sort = () => {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={setVisible.bind(null, !visible)}>{nameOfCurrentSort}</span>
+                <span onClick={toggleVisiblePopup}>{nameOfCurrentSort}</span>
             </div>
             {visible && (
                 <div className="sort__popup">
                     <ul>
-                        {sorts.map((sort, index) =>
+                        {items.map((sort, index) =>
                             <li
                                 key={index + sort.name}
                                 className={classNames({'active': sortActive === index})}
