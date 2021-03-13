@@ -1,6 +1,6 @@
 import logoSvg from '../assets/img/pizza-logo.svg';
 import { Link } from 'react-router-dom';
-import Button from './Button';
+import { Button } from '.';
 
 const Header = () => {
     return (

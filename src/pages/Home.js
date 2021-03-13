@@ -1,7 +1,5 @@
 import React from 'react';
-import Categories from '../components/Categories';
-import Sort from '../components/home/Sort';
-import Card from '../components/home/Card';
+import { Categories, Sort, Card } from '../components';
 
 const Home = () => {
     const pizzas = [];
