@@ -52,19 +52,21 @@ const Sort = () => {
                 <b>Сортировка по:</b>
                 <span onClick={setVisible.bind(null, !visible)}>{nameOfCurrentSort}</span>
             </div>
-            <div className="sort__popup" style={{display: visible ? 'block' : 'none'}}>
-                <ul>
-                    {sorts.map((sort, index) =>
-                        <li
-                            key={index + sort.name}
-                            className={classNames({'active': sortActive === index})}
-                            onClick={sortHandler.bind(null, index)}
-                        >
-                            {sort.name}
-                        </li>
-                    )}
-                </ul>
-            </div>
+            {visible && (
+                <div className="sort__popup">
+                    <ul>
+                        {sorts.map((sort, index) =>
+                            <li
+                                key={index + sort.name}
+                                className={classNames({'active': sortActive === index})}
+                                onClick={sortHandler.bind(null, index)}
+                            >
+                                {sort.name}
+                            </li>
+                        )}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 };
