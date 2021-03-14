@@ -6,7 +6,7 @@ const Home = ({ items }) => {
     const sorts = [
         { name: 'популярности', type: 'popular', order: 'desc' },
         { name: 'цене', type: 'price', order: 'desc' },
-        { name: 'алфавит', type: 'name', order: 'asc' },
+        { name: 'алфавит', type: 'name', order: 'asc' }
     ];
 
     return (
@@ -18,7 +18,7 @@ const Home = ({ items }) => {
                 </div>
                 <h2 className="content__title">Все пиццы</h2>
                 <div className="content__items">
-                    {items.map(pizza =>
+                    {items && items.map(pizza =>
                         <Card
                             key={pizza.id}
                             {...pizza}
