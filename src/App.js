@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
     Switch,
     Route
@@ -7,15 +8,16 @@ import {
 import { Header } from './components';
 import { Home, Cart } from './pages';
 import axios from 'axios';
+import { setPizzas } from './redux/actions/pizzas';
 
 const App = () => {
-    const [pizzas, setPizzas] = useState([]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         axios
             .get('http://localhost:5000/pizzas')
             .then(({ data }) => {
-                setPizzas(data);
+                dispatch(setPizzas(data));
             });
     }, []);
 
@@ -24,7 +26,7 @@ const App = () => {
             <Header />
             <div className="content">
                 <Switch>
-                    <Route path="/" render={() => <Home items={pizzas} />} exact />
+                    <Route path="/" component={Home} exact />
                     <Route path="/cart" component={Cart} exact />
                 </Switch>
             </div>

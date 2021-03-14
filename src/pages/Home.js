@@ -1,13 +1,18 @@
 import React from 'react';
 import { Categories, Sort, Card } from '../components';
+import { useSelector } from 'react-redux';
 
-const Home = ({ items }) => {
+const Home = () => {
     const categories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
     const sorts = [
         { name: 'популярности', type: 'popular', order: 'desc' },
         { name: 'цене', type: 'price', order: 'desc' },
         { name: 'алфавит', type: 'name', order: 'asc' }
     ];
+    const { items } = useSelector(({ pizzas, filters }) => ({
+        items: pizzas.items,
+        sortBy: filters.sortBy
+    }));
 
     return (
         <div className="content">
