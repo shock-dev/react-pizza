@@ -43,7 +43,9 @@ const Home = () => {
                             key={pizza.id}
                             {...pizza}
                         />
-                    ) : Array(8).fill(<PlaceHolderCard />)}
+                    ) : Array(8)
+                        .fill(0)
+                        .map((item, index) => <PlaceHolderCard key={index} />)}
                 </div>
             </div>
         </div>
