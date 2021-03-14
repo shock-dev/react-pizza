@@ -19,8 +19,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "db": "json-server public/db.json --port=5000",
-    "dev": "concurrently \"yarn start\" \"yarn db\"",
+    "db": "npx json-server public/db.json --port=5000",
+    "dev": "concurrently \"yarn db\" \"yarn start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
