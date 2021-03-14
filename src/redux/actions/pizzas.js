@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+export const setLoaded = (bool) => ({
+    type: 'SET_LOADED',
+    payload: bool
+});
+
 export const fetchPizzas = () => dispatch => {
     axios
         .get('http://localhost:5000/pizzas')
