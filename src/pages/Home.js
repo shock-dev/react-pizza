@@ -1,7 +1,8 @@
-import React  from 'react';
+import React, { useEffect } from 'react';
 import { Categories, Sort, Card } from '../components';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategory } from '../redux/actions/filters';
+import { fetchPizzas } from '../redux/actions/pizzas';
 
 const categories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 const sorts = [
@@ -13,6 +14,12 @@ const sorts = [
 const Home = () => {
     const dispatch = useDispatch();
     const items = useSelector(({ pizzas }) => pizzas.items);
+
+    useEffect(() => {
+        if (!items.length) {
+            dispatch(fetchPizzas());
+        }
+    }, []);
 
     const handleCategoryClick = (index) => {
         dispatch(setCategory(index));
