@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-    BrowserRouter as Router,
     Switch,
     Route
 } from 'react-router-dom';
@@ -21,17 +20,15 @@ const App = () => {
     }, []);
 
     return (
-        <Router>
-            <div className="wrapper">
-                <Header />
-                <div className="content">
-                    <Switch>
-                        <Route path="/" render={() => <Home items={pizzas} />} exact />
-                        <Route path="/cart" component={Cart} exact />
-                    </Switch>
-                </div>
+        <div className="wrapper">
+            <Header />
+            <div className="content">
+                <Switch>
+                    <Route path="/" render={() => <Home items={pizzas} />} exact />
+                    <Route path="/cart" component={Cart} exact />
+                </Switch>
             </div>
-        </Router>
+        </div>
     )
 }
 
