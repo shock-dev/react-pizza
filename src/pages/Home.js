@@ -1,24 +1,31 @@
-import React from 'react';
+import React  from 'react';
 import { Categories, Sort, Card } from '../components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCategory } from '../redux/actions/filters';
+
+const categories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+const sorts = [
+    { name: 'популярности', type: 'popular', order: 'desc' },
+    { name: 'цене', type: 'price', order: 'desc' },
+    { name: 'алфавит', type: 'name', order: 'asc' }
+];
 
 const Home = () => {
-    const categories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-    const sorts = [
-        { name: 'популярности', type: 'popular', order: 'desc' },
-        { name: 'цене', type: 'price', order: 'desc' },
-        { name: 'алфавит', type: 'name', order: 'asc' }
-    ];
-    const { items } = useSelector(({ pizzas, filters }) => ({
-        items: pizzas.items,
-        sortBy: filters.sortBy
-    }));
+    const dispatch = useDispatch();
+    const items = useSelector(({ pizzas }) => pizzas.items);
+
+    const handleCategoryClick = (index) => {
+        dispatch(setCategory(index));
+    }
 
     return (
         <div className="content">
             <div className="container">
                 <div className="content__top">
-                    <Categories items={categories} />
+                    <Categories
+                        items={categories}
+                        onClickItem={handleCategoryClick}
+                    />
                     <Sort items={sorts} />
                 </div>
                 <h2 className="content__title">Все пиццы</h2>
@@ -32,7 +39,7 @@ const Home = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default Home;

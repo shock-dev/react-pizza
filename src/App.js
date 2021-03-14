@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-    Switch,
-    Route
-} from 'react-router-dom';
-
+import { Route, Switch } from 'react-router-dom';
 import { Header } from './components';
-import { Home, Cart } from './pages';
+import { Cart, Home } from './pages';
 import axios from 'axios';
 import { setPizzas } from './redux/actions/pizzas';
 

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 
-const Categories = ({ items }) => {
+const Categories = ({ items, onClickItem }) => {
     const [categoryActive, setCategoryActive] = useState(null);
 
     const onSelectItem = (index) => {
         setCategoryActive(index);
+        onClickItem(index);
     }
 
     return (
@@ -31,6 +32,6 @@ const Categories = ({ items }) => {
             </ul>
         </div>
     );
-};
+}
 
 export default Categories;
