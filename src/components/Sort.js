@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 
-const Sort = ({ items }) => {
-
-    const [sortActive, setSortActive] = useState(0);
+const Sort = ({ items, activeType, onClickSortType }) => {
     const [visible, setVisible] = useState(false);
     const wrapperRef = useRef(null);
-    const nameOfCurrentSort = items[sortActive].name;
+    const nameOfCurrentSort = items.find(obj => obj.type === activeType).name;
 
     const useOutsideAlerter = (ref) => {
         useEffect(() => {
@@ -25,7 +23,7 @@ const Sort = ({ items }) => {
     useOutsideAlerter(wrapperRef);
 
     const sortHandler = (index) => {
-        setSortActive(index);
+        onClickSortType(index);
         setVisible(false);
     }
 
@@ -58,8 +56,8 @@ const Sort = ({ items }) => {
                         {items.map((sort, index) =>
                             <li
                                 key={index + sort.name}
-                                className={classNames({'active': sortActive === index})}
-                                onClick={sortHandler.bind(null, index)}
+                                className={classNames({'active': activeType === sort.type})}
+                                onClick={sortHandler.bind(null, sort.type)}
                             >
                                 {sort.name}
                             </li>
