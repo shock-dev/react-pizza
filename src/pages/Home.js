@@ -13,14 +13,12 @@ const sorts = [
 
 const Home = () => {
     const dispatch = useDispatch();
-    const items = useSelector(({ pizzas }) => pizzas.items);
-    const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded)
+    const { items, isLoaded } = useSelector(({ pizzas }) => pizzas);
+    const { category } = useSelector(({ filters }) => filters);
 
     useEffect(() => {
-        if (!items.length) {
-            dispatch(fetchPizzas());
-        }
-    }, []);
+        dispatch(fetchPizzas());
+    }, [category]);
 
     const handleCategoryClick = (index) => {
         dispatch(setCategory(index));
@@ -33,6 +31,7 @@ const Home = () => {
                     <Categories
                         items={categories}
                         onClickItem={handleCategoryClick}
+                        activeIndex={category}
                     />
                     <Sort items={sorts} />
                 </div>
