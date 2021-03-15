@@ -6,6 +6,7 @@ export const setLoaded = (bool) => ({
 });
 
 export const fetchPizzas = () => dispatch => {
+    dispatch(setLoaded(false));
     axios
         .get('http://localhost:5000/pizzas')
         .then(({ data }) => {
