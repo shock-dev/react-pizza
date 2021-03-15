@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Categories, Sort, Card, PlaceHolderCard } from '../components';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCategory } from '../redux/actions/filters';
+import { setCategory, setSortBy } from '../redux/actions/filters';
 import { fetchPizzas } from '../redux/actions/pizzas';
 
 const categories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
@@ -14,14 +14,18 @@ const sorts = [
 const Home = () => {
     const dispatch = useDispatch();
     const { items, isLoaded } = useSelector(({ pizzas }) => pizzas);
-    const { category } = useSelector(({ filters }) => filters);
+    const { category, sortBy } = useSelector(({ filters }) => filters);
 
     useEffect(() => {
         dispatch(fetchPizzas());
-    }, [category]);
+    }, [category, sortBy]);
 
     const handleCategoryClick = (index) => {
         dispatch(setCategory(index));
+    }
+
+    const handleSortType = (type) => {
+        dispatch(setSortBy(type));
     }
 
     return (
@@ -33,7 +37,11 @@ const Home = () => {
                         onClickItem={handleCategoryClick}
                         activeIndex={category}
                     />
-                    <Sort items={sorts} />
+                    <Sort
+                        items={sorts}
+                        activeType={sortBy}
+                        onClickSortType={handleSortType}
+                    />
                 </div>
                 <h2 className="content__title">Все пиццы</h2>
                 <div className="content__items">
