@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
-const Categories = ({ items, onClickItem }) => {
-    const [categoryActive, setCategoryActive] = useState(null);
-
-    const onSelectItem = (index) => {
-        setCategoryActive(index);
-        onClickItem(index);
-    }
-
+const Categories = ({ items, onClickItem,  activeIndex }) => {
     return (
         <div className="categories">
             <ul>
                 <li
-                    className={classNames({'active': categoryActive === null})}
-                    onClick={onSelectItem.bind(null, null)}
+                    className={classNames({'active': activeIndex === null})}
+                    onClick={onClickItem.bind(null, null)}
                 >
                     Все
                 </li>
@@ -22,8 +15,8 @@ const Categories = ({ items, onClickItem }) => {
                     items.map((category, index) =>
                         <li
                             key={index}
-                            className={classNames({'active': index === categoryActive})}
-                            onClick={onSelectItem.bind(null, index)}
+                            className={classNames({'active': index === activeIndex})}
+                            onClick={onClickItem.bind(null, index)}
                         >
                             {category}
                         </li>
