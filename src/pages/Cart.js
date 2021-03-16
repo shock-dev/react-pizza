@@ -1,6 +1,6 @@
 import React from 'react';
-import CartComponent from '../components/Cart/cartComponent';
-import EmptyCart from '../components/Cart/emptyCart'
+import CartComponent from '../components/Cart/CartComponent';
+import EmptyCart from '../components/Cart/EmptyCart'
 
 const Cart = () => {
     const flag = true;
