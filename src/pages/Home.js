@@ -17,7 +17,7 @@ const Home = () => {
     const { category, sortBy } = useSelector(({ filters }) => filters);
 
     useEffect(() => {
-        dispatch(fetchPizzas());
+        dispatch(fetchPizzas(category, sortBy));
     }, [category, sortBy]);
 
     const handleCategoryClick = (index) => {
@@ -39,7 +39,7 @@ const Home = () => {
                     />
                     <Sort
                         items={sorts}
-                        activeType={sortBy}
+                        activeType={sortBy.type}
                         onClickSortType={handleSortType}
                     />
                 </div>

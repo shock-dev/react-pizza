@@ -57,7 +57,7 @@ const Sort = ({ items, activeType, onClickSortType }) => {
                             <li
                                 key={index + sort.name}
                                 className={classNames({'active': activeType === sort.type})}
-                                onClick={sortHandler.bind(null, sort.type)}
+                                onClick={sortHandler.bind(null, sort)}
                             >
                                 {sort.name}
                             </li>
