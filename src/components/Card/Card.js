@@ -1,11 +1,25 @@
 import { useState } from 'react';
 import classNames from 'classnames';
+import { Button } from '../index';
 
-const Card = ({ name, imageUrl, types, sizes, price }) => {
+const Card = ({ id, name, imageUrl, types, sizes, price, onAddProduct }) => {
     const typesName = ['тонкое', 'традиционное'];
     const allSizes = [26, 30, 40];
     const [activeType, setActiveType] = useState(types[0]);
     const [activeSize, setActiveSize] = useState(sizes[0]);
+
+    const onClickButton = () => {
+        const data = {
+            id,
+            name,
+            imageUrl,
+            price,
+            size: activeSize,
+            type: typesName[activeType]
+        }
+
+        onAddProduct(data);
+    }
 
     return (
         <div className="pizza-block">
@@ -47,7 +61,11 @@ const Card = ({ name, imageUrl, types, sizes, price }) => {
             </div>
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">от {price} ₽</div>
-                <div className="button button--outline button--add">
+                <Button
+                    className="button--add"
+                    outline
+                    onClick={onClickButton}
+                >
                     <svg
                         width="12"
                         height="12"
@@ -61,8 +79,8 @@ const Card = ({ name, imageUrl, types, sizes, price }) => {
                         />
                     </svg>
                     <span>Добавить</span>
-                    {/*<i>2</i>*/}
-                </div>
+                    <i>2</i>
+                </Button>
             </div>
         </div>
     );
