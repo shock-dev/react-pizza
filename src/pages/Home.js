@@ -3,6 +3,7 @@ import { Categories, Sort, Card, PlaceHolderCard } from '../components';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategory, setSortBy } from '../redux/actions/filters';
 import { fetchPizzas } from '../redux/actions/pizzas';
+import { addPizzaToCart } from '../redux/actions/cart';
 
 const categories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 const sorts = [
@@ -28,6 +29,10 @@ const Home = () => {
         dispatch(setSortBy(type));
     }
 
+    const handleAddToCart = (pizzaObj) => {
+        dispatch(addPizzaToCart(pizzaObj));
+    }
+
     return (
         <div className="content">
             <div className="container">
@@ -48,6 +53,7 @@ const Home = () => {
                     {isLoaded ? items.map(pizza =>
                         <Card
                             key={pizza.id}
+                            onAddProduct={handleAddToCart}
                             {...pizza}
                         />
                     ) : Array(8)
