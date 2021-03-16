@@ -16,6 +16,7 @@ const Home = () => {
     const dispatch = useDispatch();
     const { items, isLoaded } = useSelector(({ pizzas }) => pizzas);
     const { category, sortBy } = useSelector(({ filters }) => filters);
+    const { items: cartItems } = useSelector(({ cart }) => cart);
 
     useEffect(() => {
         dispatch(fetchPizzas(category, sortBy));
@@ -52,9 +53,10 @@ const Home = () => {
                 <div className="content__items">
                     {isLoaded ? items.map(pizza =>
                         <Card
+                            {...pizza}
                             key={pizza.id}
                             onAddProduct={handleAddToCart}
-                            {...pizza}
+                            count={cartItems[pizza.id] && cartItems[pizza.id].length}
                         />
                     ) : Array(8)
                         .fill(0)
