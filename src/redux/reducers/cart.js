@@ -15,7 +15,9 @@ const cart = (state = initialState, action) => {
             };
             return {
                 ...state,
-                items: newItems
+                items: newItems,
+                totalPrice: state.totalPrice + action.payload.price,
+                totalCount: ++state.totalCount
             };
         default:
             return state;
