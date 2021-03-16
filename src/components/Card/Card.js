@@ -2,7 +2,7 @@ import { useState } from 'react';
 import classNames from 'classnames';
 import { Button } from '../index';
 
-const Card = ({ id, name, imageUrl, types, sizes, price, onAddProduct }) => {
+const Card = ({ id, name, imageUrl, types, sizes, price, onAddProduct, count }) => {
     const typesName = ['тонкое', 'традиционное'];
     const allSizes = [26, 30, 40];
     const [activeType, setActiveType] = useState(types[0]);
@@ -79,7 +79,7 @@ const Card = ({ id, name, imageUrl, types, sizes, price, onAddProduct }) => {
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>2</i>
+                    {count ? <i>{count}</i> : null}
                 </Button>
             </div>
         </div>
