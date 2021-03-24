@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
-import { addPizzaToCart, minusPizza } from '../../redux/actions/cart';
+import { addPizzaToCart, minusPizza, removePizza } from '../../redux/actions/cart';
 import { useDispatch } from 'react-redux';
 
 const CartComponent = ({ items, keys, totalCount, totalPrice }) => {
@@ -13,6 +13,10 @@ const CartComponent = ({ items, keys, totalCount, totalPrice }) => {
     const minusPizzaHandler = (key) => {
         dispatch(minusPizza(key));
     };
+
+    const removePizzaHandler = (key) => {
+        dispatch(removePizza(key));
+    }
 
     return (
         <div className="cart">
@@ -58,6 +62,7 @@ const CartComponent = ({ items, keys, totalCount, totalPrice }) => {
                         localTotalPrice={items[key].localTotalPrice}
                         plusPizza={plusPizzaHandler.bind(null, items[key].pizzas[0])}
                         minusPizza={minusPizzaHandler.bind(null, key)}
+                        removePizza={removePizzaHandler.bind(null, key)}
                     />
                 )}
             </div>
