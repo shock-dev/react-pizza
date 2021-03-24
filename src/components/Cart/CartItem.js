@@ -1,7 +1,16 @@
 import React from 'react';
 import { Button } from '../index';
 
-const CartItem = ({ id, name, type, size, imageUrl, price }) => {
+const CartItem = ({
+    name,
+    type,
+    size,
+    imageUrl,
+    count,
+    localTotalPrice,
+    plusPizza,
+    minusPizza
+}) => {
     return (
         <div className="cart__item">
             <div className="cart__item-img">
@@ -16,7 +25,11 @@ const CartItem = ({ id, name, type, size, imageUrl, price }) => {
                 <p>{type} тесто, {size} см.</p>
             </div>
             <div className="cart__item-count">
-                <Button className="button--circle cart__item-count-minus" outline>
+                <Button
+                    className="button--circle cart__item-count-minus"
+                    onClick={minusPizza}
+                    outline
+                >
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -28,8 +41,12 @@ const CartItem = ({ id, name, type, size, imageUrl, price }) => {
                     </svg>
 
                 </Button>
-                <b>2</b>
-                <Button className="button--circle cart__item-count-plus" outline>
+                <b>{count}</b>
+                <Button
+                    className="button--circle cart__item-count-plus"
+                    onClick={plusPizza}
+                    outline
+                >
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -43,7 +60,7 @@ const CartItem = ({ id, name, type, size, imageUrl, price }) => {
                 </Button>
             </div>
             <div className="cart__item-price">
-                <b>{price} ₽</b>
+                <b>{localTotalPrice} ₽</b>
             </div>
             <div className="cart__item-remove">
                 <Button className="button--circle" outline>
