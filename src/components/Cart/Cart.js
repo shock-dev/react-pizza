@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
-import { addPizzaToCart, minusPizza, removePizza } from '../../redux/actions/cart';
+import { addPizzaToCart, clearCart, minusPizza, removePizza } from '../../redux/actions/cart';
 import { useDispatch } from 'react-redux';
 
 const CartComponent = ({ items, keys, totalCount, totalPrice }) => {
@@ -17,6 +17,10 @@ const CartComponent = ({ items, keys, totalCount, totalPrice }) => {
     const removePizzaHandler = (key) => {
         dispatch(removePizza(key));
     }
+
+    const clearCartHandler = () => {
+        dispatch(clearCart());
+    };
 
     return (
         <div className="cart">
@@ -36,7 +40,10 @@ const CartComponent = ({ items, keys, totalCount, totalPrice }) => {
                     </svg>
                     Корзина
                 </h2>
-                <div className="cart__clear">
+                <div
+                    className="cart__clear"
+                    onClick={clearCartHandler}
+                >
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.5 5H4.16667H17.5" stroke="#B6B6B6" strokeWidth="1.2" strokeLinecap="round"

@@ -61,6 +61,13 @@ const cart = (state = initialState, action) => {
                 totalPrice: state.totalPrice - cartItemsPrice,
                 items: cartItems
             };
+        case 'CLEAR_CART':
+            return {
+                ...state,
+                totalPrice: 0,
+                totalCount: 0,
+                items: {}
+            };
         default:
             return state;
     }

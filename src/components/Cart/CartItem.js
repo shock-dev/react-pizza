@@ -10,7 +10,8 @@ const CartItem = ({
     localTotalPrice,
     plusPizza,
     minusPizza,
-    removePizza
+    removePizza,
+    clear
 }) => {
     return (
         <div className="cart__item">
