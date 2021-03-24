@@ -56,7 +56,7 @@ const Home = () => {
                             {...pizza}
                             key={pizza.id}
                             onAddProduct={handleAddToCart}
-                            count={cartItems[pizza.id] && cartItems[pizza.id].length}
+                            count={cartItems[pizza.id] && cartItems[pizza.id].pizzas.length}
                         />
                     ) : Array(8)
                         .fill(0)
