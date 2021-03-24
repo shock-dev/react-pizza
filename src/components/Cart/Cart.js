@@ -1,7 +1,19 @@
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
+import { addPizzaToCart, minusPizza } from '../../redux/actions/cart';
+import { useDispatch } from 'react-redux';
 
-const cartComponent = () => {
+const CartComponent = ({ items, keys, totalCount, totalPrice }) => {
+    const dispatch = useDispatch();
+
+    const plusPizzaHandler = (pizza) => {
+        dispatch(addPizzaToCart(pizza));
+    };
+
+    const minusPizzaHandler = (key) => {
+        dispatch(minusPizza(key));
+    };
+
     return (
         <div className="cart">
             <div className="cart__top">
@@ -38,12 +50,21 @@ const cartComponent = () => {
                 </div>
             </div>
             <div className="content__items">
-                <CartItem />
+                {keys.map((key) =>
+                    <CartItem
+                        key={key}
+                        {...items[key].pizzas[0]}
+                        count={items[key].pizzas.length}
+                        localTotalPrice={items[key].localTotalPrice}
+                        plusPizza={plusPizzaHandler.bind(null, items[key].pizzas[0])}
+                        minusPizza={minusPizzaHandler.bind(null, key)}
+                    />
+                )}
             </div>
             <div className="cart__bottom">
                 <div className="cart__bottom-details">
-                    <span> Всего пицц: <b>3 шт.</b> </span>
-                    <span> Сумма заказа: <b>900 ₽</b> </span>
+                    <span> Всего пицц: <b>{totalCount} шт.</b> </span>
+                    <span> Сумма заказа: <b>{totalPrice} ₽</b> </span>
                 </div>
                 <div className="cart__bottom-buttons">
                     <Link to="/" className="button button--outline button--add go-back-btn">
@@ -64,4 +85,4 @@ const cartComponent = () => {
     );
 };
 
-export default cartComponent;
+export default CartComponent;
