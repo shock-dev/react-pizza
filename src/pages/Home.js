@@ -20,7 +20,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(fetchPizzas(category, sortBy));
-    }, [category, sortBy]);
+    }, [category, sortBy, dispatch]);
 
     const handleCategoryClick = (index) => {
         dispatch(setCategory(index));
