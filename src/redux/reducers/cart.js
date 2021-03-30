@@ -1,3 +1,10 @@
+import {
+    ADD_PIZZA_TO_CART,
+    CLEAR_CART,
+    MINUS_PIZZA,
+    REMOVE_PIZZA
+} from '../cases/cart';
+
 const initialState = {
     items: {},
     totalPrice: 0,
@@ -6,7 +13,7 @@ const initialState = {
 
 const cart = (state = initialState, action) => {
     switch (action.type) {
-        case 'ADD_PIZZA_TO_CART':
+        case ADD_PIZZA_TO_CART:
             const newItems = {
                 ...state.items,
                 [action.payload.id]: !state.items[action.payload.id]
@@ -26,7 +33,7 @@ const cart = (state = initialState, action) => {
                 totalPrice: state.totalPrice + action.payload.price,
                 totalCount: ++state.totalCount
             };
-        case 'MINUS_PIZZA':
+        case MINUS_PIZZA:
             const pizzas = state.items[action.payload].pizzas;
 
             if (pizzas.length > 1) {
@@ -48,7 +55,7 @@ const cart = (state = initialState, action) => {
             }
 
             return state;
-        case 'REMOVE_PIZZA':
+        case REMOVE_PIZZA:
             const cartItems = state.items;
             const cartItemsLength = cartItems[action.payload].pizzas.length;
             const cartItemsPrice = cartItems[action.payload].pizzas.reduce((s, i) => s + i.price, 0);
@@ -61,7 +68,7 @@ const cart = (state = initialState, action) => {
                 totalPrice: state.totalPrice - cartItemsPrice,
                 items: cartItems
             };
-        case 'CLEAR_CART':
+        case CLEAR_CART:
             return {
                 ...state,
                 totalPrice: 0,
