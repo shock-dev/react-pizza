@@ -1,0 +1,2 @@
+export const SET_SORT_BY = 'FILTER/SET_SORT_BY';
+export const SET_CATEGORY = 'FILTER/SET_CATEGORY';
