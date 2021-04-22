@@ -1,15 +1,16 @@
 import { Action } from 'redux';
 
 export type CategoryType = number | null
-export type SortByType = 'popular' | 'price' | 'name'
+
+export interface SortByType {
+  name: string
+  type: 'popular' | 'price' | 'name',
+  order: 'asc' | 'desc'
+}
 
 export interface FiltersState {
   category: CategoryType
-  sortBy: {
-    name: string,
-    type: SortByType
-    order: 'asc' | 'desc'
-  }
+  sortBy: SortByType
 }
 
 export enum FiltersActionType {

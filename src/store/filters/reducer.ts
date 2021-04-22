@@ -16,6 +16,10 @@ const filters = produce((draft: Draft<FiltersState>, action: FiltersAction) => {
       draft.category = action.payload;
       break;
 
+    case FiltersActionType.SET_SORT_BY:
+      draft.sortBy = action.payload;
+      break;
+
     default:
       break;
   }
