@@ -1,7 +1,15 @@
-import { FetchPizzasAction, PizzasActionType, PizzasState, SetPizzasAction, SetStatus } from './types';
+import {
+  FetchPizzasAction,
+  FetchPizzasPayload,
+  PizzasActionType,
+  PizzasState,
+  SetPizzasAction,
+  SetStatus
+} from './types';
 
-export const fetchPizzas = (): FetchPizzasAction => ({
-  type: PizzasActionType.FETCH_PIZZAS
+export const fetchPizzas = (payload: FetchPizzasPayload): FetchPizzasAction => ({
+  type: PizzasActionType.FETCH_PIZZAS,
+  payload
 });
 
 export const setPizzas = (payload: PizzasState['items']): SetPizzasAction => ({

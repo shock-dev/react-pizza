@@ -1,5 +1,6 @@
 import { EntityStatus } from '../types';
 import { Action } from 'redux';
+import { CategoryType, SortByType } from '../filters/types';
 
 export interface IPizza {
   id: number,
@@ -23,8 +24,14 @@ export enum PizzasActionType {
   SET_STATUS = '@/pizzas/SET_STATUS'
 }
 
+export interface FetchPizzasPayload {
+  category: CategoryType
+  sortBy: SortByType
+}
+
 export interface FetchPizzasAction extends Action {
   type: PizzasActionType.FETCH_PIZZAS
+  payload: FetchPizzasPayload
 }
 
 export interface SetPizzasAction extends Action {
