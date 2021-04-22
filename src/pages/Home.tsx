@@ -11,13 +11,16 @@ import { setCategory, setSortBy } from '../store/filters/actions';
 
 import categories from '../resources/categories';
 import sorts from '../resources/sorts';
-import { selectPizzas } from '../store/pizzas/selectors';
+import { selectPizzas, selectPizzasLoading, selectPizzasSuccess } from '../store/pizzas/selectors';
+import Skeleton from '../components/Card/Skeleton';
 
 const Home = () => {
   const dispatch = useDispatch();
   const activeCategory = useSelector(selectCategory);
   const activeSortObj = useSelector(selectSortBy);
   const pizzas = useSelector(selectPizzas);
+  const isLoading = useSelector(selectPizzasLoading);
+  const isSuccess = useSelector(selectPizzasSuccess);
 
   useEffect(() => {
     document.title = 'React pizza - Home page';
@@ -34,6 +37,25 @@ const Home = () => {
       dispatch(setSortBy(sortObj));
     }
   };
+
+  let output: any = false;
+
+  if (isLoading) {
+    output = new Array(6).fill(0).map((item, index) => <Skeleton key={index} />);
+  }
+
+  if (isSuccess) {
+    output = pizzas.map((pizza) =>
+      <Card
+        key={pizza.id}
+        name={pizza.name}
+        imageUrl={pizza.imageUrl}
+        types={pizza.types}
+        sizes={pizza.sizes}
+        price={pizza.price}
+      />
+    );
+  }
 
   return (
     <div className="content">
@@ -52,16 +74,7 @@ const Home = () => {
         </div>
         <h2 className="content__title">Все пиццы</h2>
         <div className="content__items">
-          {pizzas.map((pizza) =>
-            <Card
-              key={pizza.id}
-              name={pizza.name}
-              imageUrl={pizza.imageUrl}
-              types={pizza.types}
-              sizes={pizza.sizes}
-              price={pizza.price}
-            />
-          )}
+          {output}
         </div>
       </div>
     </div>
