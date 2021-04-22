@@ -58,6 +58,7 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "concurrently": "^6.0.0",
+    "editorconfig-checker": "^4.0.2",
     "eslint": "^7.24.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.23.2",
