@@ -1,6 +1,0 @@
-export { default as Button } from './Button';
-export { default as Header } from './Header';
-export { default as Categories } from './Categories';
-export { default as Sort } from './Sort';
-export { default as Card } from './Card/Card';
-export { default as PlaceHolderCard } from './Card/PlaceHolderCard';
