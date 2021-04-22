@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
-import { useDispatch } from 'react-redux';
 import { fetchPizzas } from './store/pizzas/actions';
 
 const App = () => {

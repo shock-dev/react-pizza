@@ -1,27 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
+import classNames from 'classnames';
 
-const Card = () => {
+interface CardProps {
+  name: string,
+  imageUrl: string
+  types: number[],
+  sizes: number[],
+  price: number
+}
+
+const Card = ({
+  name,
+  imageUrl,
+  types,
+  sizes,
+  price
+}: CardProps) => {
+  const allTypes = ['тонкое', 'традиционное'];
+  const allSizes = [26, 30, 40];
+
+  const [activeType, setActiveType] = useState(types[0]);
+  const [activeSize, setActiveSize] = useState(sizes[0]);
+
   return (
     <div className="pizza-block">
       <img
         className="pizza-block__image"
-        src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-        alt="Pizza"
+        src={imageUrl}
+        alt={name}
       />
-      <h4 className="pizza-block__title">Чизбургер-пицца</h4>
+      <h4 className="pizza-block__title">{name}</h4>
       <div className="pizza-block__selector">
         <ul>
-          <li className="active">тонкое</li>
-          <li>традиционное</li>
+          {allTypes.map((type, index) =>
+            <li
+              key={index}
+              className={classNames({ active: index === activeType, disabled: !types.includes(index) })}
+              onClick={setActiveType.bind(null, index)}
+            >
+              {type}
+            </li>
+          )}
         </ul>
         <ul>
-          <li className="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {allSizes.map((size) =>
+            <li
+              key={size}
+              className={classNames({ active: size === activeSize, disabled: !sizes.includes(size) })}
+              onClick={setActiveSize.bind(null, size)}
+            >
+              {size} см.
+            </li>
+          )}
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">от 395 ₽</div>
+        <div className="pizza-block__price">от {price} ₽</div>
         <div className="button button--outline button--add">
           <svg
             width="12"
@@ -36,7 +70,7 @@ const Card = () => {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
+          {/* <i>2</i>*/}
         </div>
       </div>
     </div>

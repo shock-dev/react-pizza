@@ -11,11 +11,13 @@ import { setCategory, setSortBy } from '../store/filters/actions';
 
 import categories from '../resources/categories';
 import sorts from '../resources/sorts';
+import { selectPizzas } from '../store/pizzas/selectors';
 
 const Home = () => {
   const dispatch = useDispatch();
   const activeCategory = useSelector(selectCategory);
   const activeSortObj = useSelector(selectSortBy);
+  const pizzas = useSelector(selectPizzas);
 
   useEffect(() => {
     document.title = 'React pizza - Home page';
@@ -50,7 +52,16 @@ const Home = () => {
         </div>
         <h2 className="content__title">Все пиццы</h2>
         <div className="content__items">
-          <Card />
+          {pizzas.map((pizza) =>
+            <Card
+              key={pizza.id}
+              name={pizza.name}
+              imageUrl={pizza.imageUrl}
+              types={pizza.types}
+              sizes={pizza.sizes}
+              price={pizza.price}
+            />
+          )}
         </div>
       </div>
     </div>
