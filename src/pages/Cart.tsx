@@ -1,6 +1,13 @@
 import React from 'react';
+import Empty from '../components/Cart/Empty';
 
 const Cart = () => {
+  const isEmptyCart = true;
+
+  if (isEmptyCart) {
+    return <Empty />;
+  }
+
   return (
     <div className="container container--cart">
       <div className="cart">
