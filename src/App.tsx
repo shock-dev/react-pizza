@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Home from './pages/Home';
 import { fetchPizzas } from './store/pizzas/actions';
 import { selectCategory, selectSortBy } from './store/filters/selectors';
+import Home from './pages/Home';
+import Cart from './pages/Cart';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,11 @@ const App = () => {
           <Route
             path="/"
             component={Home}
+            exact
+          />
+          <Route
+            path="/cart"
+            component={Cart}
           />
         </Switch>
       </div>
