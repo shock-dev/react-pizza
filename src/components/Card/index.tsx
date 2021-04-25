@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { ICartItem } from '../../store/cart/types';
+
+export interface CartPrepareData {
+  name: string
+  imageUrl: string
+  price: number
+  type: string
+  size: number
+}
 
 interface CardProps {
   name: string
@@ -9,7 +16,7 @@ interface CardProps {
   sizes: number[]
   price: number
   count: number
-  addPizzaHandler: (item: ICartItem) => void
+  addPizzaHandler: (item: CartPrepareData) => void
 }
 
 const Card = ({
@@ -28,7 +35,7 @@ const Card = ({
   const [activeSize, setActiveSize] = useState(sizes[0]);
 
   const onClickHandler = () => {
-    const item: ICartItem = {
+    const item: CartPrepareData = {
       name,
       imageUrl,
       price,
