@@ -18,7 +18,8 @@ export interface CartState {
 
 export enum CartActionType {
   SET_CART_ITEM = '@/cart/SET_CART_ITEM',
-  PLUS_CART_ITEM = '@/cart/PLUS_CART_ITEM'
+  PLUS_CART_ITEM = '@/cart/PLUS_CART_ITEM',
+  MINUS_CART_ITEM = '@/cart/MINUS_CART_ITEM'
 }
 
 export interface SetCartItemAction extends Action {
@@ -31,6 +32,12 @@ export interface PlusCartItemAction extends Action {
   payload: ICartItem['id']
 }
 
+export interface MinusCartItemAction extends Action {
+  type: CartActionType.MINUS_CART_ITEM
+  payload: ICartItem['id']
+}
+
 export type CartAction =
   | SetCartItemAction
   | PlusCartItemAction
+  | MinusCartItemAction
