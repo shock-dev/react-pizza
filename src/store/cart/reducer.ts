@@ -30,6 +30,14 @@ const cart = produce((draft: Draft<CartState>, action: CartAction) => {
         draft.totalCount -= 1;
       }
       break;
+
+    case CartActionType.UNSET_CART_ITEM:
+      const indexForUnset = draft.items.findIndex((item) => item.id === action.payload);
+      draft.totalPrice -= draft.items[indexForUnset].price * draft.items[indexForUnset].count;
+      draft.totalCount -= draft.items[indexForUnset].count;
+      draft.items.splice(indexForUnset, 1);
+      break;
+
     default:
       break;
   }

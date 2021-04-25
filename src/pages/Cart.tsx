@@ -5,7 +5,7 @@ import CartItem from '../components/Cart/CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCartItems, selectTotalCount, selectTotalPrice } from '../store/cart/selectors';
 import { ICartItem } from '../store/cart/types';
-import { minusCartItem, plusCartItem } from '../store/cart/actions';
+import { minusCartItem, plusCartItem, unsetCartItem } from '../store/cart/actions';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -23,6 +23,10 @@ const Cart = () => {
 
   const minusPizzaHandler = (id: number): void => {
     dispatch(minusCartItem(id));
+  };
+
+  const unsetPizzaHandler = (id: number): void => {
+    dispatch(unsetCartItem(id));
   };
 
   return (
@@ -59,6 +63,7 @@ const Cart = () => {
               price={item.price}
               plus={() => plusPizzaHandler(item.id)}
               minus={() => minusPizzaHandler(item.id)}
+              unset={() => unsetPizzaHandler(item.id)}
             />
           )}
         </div>
