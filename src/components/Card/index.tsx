@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { ICartItem } from '../../store/cart/types';
 
 interface CardProps {
-  name: string,
+  name: string
   imageUrl: string
-  types: number[],
-  sizes: number[],
+  types: number[]
+  sizes: number[]
   price: number
+  count: number
+  addPizzaHandler: (item: ICartItem) => void
 }
 
 const Card = ({
@@ -14,13 +17,26 @@ const Card = ({
   imageUrl,
   types,
   sizes,
-  price
+  price,
+  count,
+  addPizzaHandler
 }: CardProps) => {
   const allTypes = ['тонкое', 'традиционное'];
   const allSizes = [26, 30, 40];
 
   const [activeType, setActiveType] = useState(types[0]);
   const [activeSize, setActiveSize] = useState(sizes[0]);
+
+  const onClickHandler = () => {
+    const item: ICartItem = {
+      name,
+      imageUrl,
+      price,
+      type: allTypes[activeType],
+      size: activeSize
+    };
+    addPizzaHandler(item);
+  };
 
   return (
     <div className="pizza-block">
@@ -56,7 +72,7 @@ const Card = ({
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <div className="button button--outline button--add">
+        <div className="button button--outline button--add" onClick={onClickHandler}>
           <svg
             width="12"
             height="12"
@@ -70,7 +86,7 @@ const Card = ({
             />
           </svg>
           <span>Добавить</span>
-          {/* <i>2</i>*/}
+          {count > 0 && <i>{count}</i>}
         </div>
       </div>
     </div>

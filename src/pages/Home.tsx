@@ -13,6 +13,9 @@ import categories from '../resources/categories';
 import sorts from '../resources/sorts';
 import { selectPizzas, selectPizzasLoading, selectPizzasSuccess } from '../store/pizzas/selectors';
 import Skeleton from '../components/Card/Skeleton';
+import { ICartItem } from '../store/cart/types';
+import { selectCartItems } from '../store/cart/selectors';
+import { plusCartItem, setCartItem } from '../store/cart/actions';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,6 +24,7 @@ const Home = () => {
   const pizzas = useSelector(selectPizzas);
   const isLoading = useSelector(selectPizzasLoading);
   const isSuccess = useSelector(selectPizzasSuccess);
+  const cartItems = useSelector(selectCartItems);
 
   useEffect(() => {
     document.title = 'React pizza - Home page';
@@ -38,6 +42,22 @@ const Home = () => {
     }
   };
 
+  const clickPizzaHandler = (item: ICartItem, id: number) => {
+    const findItemById = cartItems.find((item) => item.id === id);
+
+    if (findItemById) {
+      dispatch(plusCartItem(id));
+    } else {
+      const prepareCartItem: ICartItem = { id, count: 1, ...item };
+      dispatch(setCartItem(prepareCartItem));
+    }
+  };
+
+  const findCountById = (id: number): number => {
+    const foundItem = cartItems.find((item) => item.id === id);
+    return foundItem?.count as number;
+  };
+
   let output: any = false;
 
   if (isLoading) {
@@ -53,6 +73,8 @@ const Home = () => {
         types={pizza.types}
         sizes={pizza.sizes}
         price={pizza.price}
+        count={findCountById(pizza.id)}
+        addPizzaHandler={(item) => clickPizzaHandler(item, pizza.id)}
       />
     );
   }
