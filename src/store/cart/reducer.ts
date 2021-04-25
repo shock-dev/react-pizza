@@ -38,6 +38,12 @@ const cart = produce((draft: Draft<CartState>, action: CartAction) => {
       draft.items.splice(indexForUnset, 1);
       break;
 
+    case CartActionType.CLEAR_CART:
+      draft.items = [];
+      draft.totalCount = 0;
+      draft.totalPrice = 0;
+      break;
+
     default:
       break;
   }

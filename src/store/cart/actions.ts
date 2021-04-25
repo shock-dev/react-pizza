@@ -1,4 +1,12 @@
-import { CartActionType, ICartItem, MinusCartItemAction, PlusCartItemAction, SetCartItemAction, UnsetCartItemAction } from './types';
+import {
+  CartActionType,
+  ClearCartAction,
+  ICartItem,
+  MinusCartItemAction,
+  PlusCartItemAction,
+  SetCartItemAction,
+  UnsetCartItemAction
+} from './types';
 
 export const setCartItem = (payload: ICartItem): SetCartItemAction => ({
   type: CartActionType.SET_CART_ITEM,
@@ -18,5 +26,9 @@ export const minusCartItem = (payload: ICartItem['id']): MinusCartItemAction => 
 export const unsetCartItem = (payload: ICartItem['id']): UnsetCartItemAction => ({
   type: CartActionType.UNSET_CART_ITEM,
   payload
+});
+
+export const clearCart = (): ClearCartAction => ({
+  type: CartActionType.CLEAR_CART
 });
 
