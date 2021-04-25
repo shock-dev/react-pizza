@@ -16,12 +16,34 @@ const cart = produce((draft: Draft<CartState>, action: CartAction) => {
       break;
 
     case CartActionType.PLUS_CART_ITEM:
-      const index = draft.items.findIndex((item) => item.id === action.payload);
-      // @ts-ignore
-      ++draft.items[index].count;
-      draft.totalPrice += draft.items[index].price;
+      const indexForPlus = draft.items.findIndex((item) => item.id === action.payload);
+      ++draft.items[indexForPlus].count;
+      draft.totalPrice += draft.items[indexForPlus].price;
       draft.totalCount += 1;
       break;
+
+    case CartActionType.MINUS_CART_ITEM:
+      const indexForMinus = draft.items.findIndex((item) => item.id === action.payload);
+      if (draft.items[indexForMinus].count > 1) {
+        --draft.items[indexForMinus].count;
+        draft.totalPrice -= draft.items[indexForMinus].price;
+        draft.totalCount -= 1;
+      }
+      break;
+
+    case CartActionType.UNSET_CART_ITEM:
+      const indexForUnset = draft.items.findIndex((item) => item.id === action.payload);
+      draft.totalPrice -= draft.items[indexForUnset].price * draft.items[indexForUnset].count;
+      draft.totalCount -= draft.items[indexForUnset].count;
+      draft.items.splice(indexForUnset, 1);
+      break;
+
+    case CartActionType.CLEAR_CART:
+      draft.items = [];
+      draft.totalCount = 0;
+      draft.totalPrice = 0;
+      break;
+
     default:
       break;
   }
