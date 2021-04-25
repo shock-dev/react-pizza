@@ -27,7 +27,7 @@ const Home = () => {
   const cartItems = useSelector(selectCartItems);
 
   useEffect(() => {
-    document.title = 'React pizza - Home page';
+    document.title = 'React pizza - Главная';
   }, []);
 
   const clickCategoryHandler = (val: CategoryType): void => {

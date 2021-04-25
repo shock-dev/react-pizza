@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Empty from '../components/Cart/Empty';
 import CartItem from '../components/Cart/CartItem';
@@ -12,8 +12,17 @@ const Cart = () => {
   const cartItems = useSelector(selectCartItems);
   const totalCount = useSelector(selectTotalCount);
   const totalPrice = useSelector(selectTotalPrice);
+  const isEmptyCart = cartItems.length;
 
-  if (!cartItems.length) {
+  useEffect(() => {
+    if (!isEmptyCart) {
+      document.title = 'React pizza - Корзина пустая';
+    } else {
+      document.title = 'React pizza - Козрина';
+    }
+  }, [isEmptyCart]);
+
+  if (!isEmptyCart) {
     return <Empty />;
   }
 
