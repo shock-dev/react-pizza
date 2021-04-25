@@ -2,13 +2,24 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Empty from '../components/Cart/Empty';
 import CartItem from '../components/Cart/CartItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCartItems, selectTotalCount, selectTotalPrice } from '../store/cart/selectors';
+import { ICartItem } from '../store/cart/types';
+import { plusCartItem } from '../store/cart/actions';
 
 const Cart = () => {
-  const isEmptyCart = false;
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+  const totalCount = useSelector(selectTotalCount);
+  const totalPrice = useSelector(selectTotalPrice);
 
-  if (isEmptyCart) {
+  if (!cartItems.length) {
     return <Empty />;
   }
+
+  const plusPizzaHandler = (id: number): void => {
+    dispatch(plusCartItem(id));
+  };
 
   return (
     <div className="container container--cart">
@@ -33,12 +44,23 @@ const Cart = () => {
           </div>
         </div>
         <div className="content__items">
-          <CartItem />
+          {cartItems.map((item: ICartItem) =>
+            <CartItem
+              key={item.id}
+              name={item.name}
+              imageUrl={item.imageUrl}
+              type={item.type}
+              size={item.size}
+              count={item.count}
+              price={item.price}
+              plus={() => plusPizzaHandler(item.id)}
+            />
+          )}
         </div>
         <div className="cart__bottom">
           <div className="cart__bottom-details">
-            <span> Всего пицц: <b>3 шт.</b> </span>
-            <span> Сумма заказа: <b>900 ₽</b> </span>
+            <span> Всего пицц: <b>{totalCount} шт.</b> </span>
+            <span> Сумма заказа: <b>{totalPrice} ₽</b> </span>
           </div>
           <div className="cart__bottom-buttons">
             <Link className="button button--outline button--add go-back-btn" to="/">

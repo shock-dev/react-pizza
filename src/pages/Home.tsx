@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
-import Card from '../components/Card';
+import Card, { CartPrepareData } from '../components/Card';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategory, selectSortBy } from '../store/filters/selectors';
@@ -42,8 +42,8 @@ const Home = () => {
     }
   };
 
-  const clickPizzaHandler = (item: ICartItem, id: number) => {
-    const findItemById = cartItems.find((item) => item.id === id);
+  const clickPizzaHandler = (item: CartPrepareData, id: number) => {
+    const findItemById = cartItems.find((item: ICartItem) => item.id === id);
 
     if (findItemById) {
       dispatch(plusCartItem(id));
@@ -54,8 +54,13 @@ const Home = () => {
   };
 
   const findCountById = (id: number): number => {
-    const foundItem = cartItems.find((item) => item.id === id);
-    return foundItem?.count as number;
+    const foundItem = cartItems.find((item: ICartItem) => item.id === id);
+
+    if (!foundItem) {
+      return 0;
+    }
+
+    return foundItem.count;
   };
 
   let output: any = false;
