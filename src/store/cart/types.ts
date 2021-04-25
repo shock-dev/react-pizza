@@ -1,13 +1,13 @@
 import { Action } from 'redux';
 
 export interface ICartItem {
-  id?: number
+  id: number
   name: string
   imageUrl: string
   type: string
   size: number
   price: number
-  count?: number
+  count: number
 }
 
 export interface CartState {
